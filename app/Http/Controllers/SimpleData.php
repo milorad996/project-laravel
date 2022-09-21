@@ -21,7 +21,7 @@ class SimpleData extends Controller
                     "description"=> "This route returns some data"
                
             ]
-        )
+            );
             
         
     }
@@ -59,13 +59,13 @@ class SimpleData extends Controller
     {
         $request->validated();
 
-        $value = $request->body('value')
+        $value = $request->body('value');
 
         if($value == "some value"){
             return response()->json([
                 "value" => "some value - modified"
-            ])
-        }
+            ]);
+        };
     }
 
     /**

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\SimpleData;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/read-data',[SimpleData::class,'index']);
+Route::get('/read-data',[SimpleData::class,'index'])->middleware('check-age');
 Route::post('/modify-data',[SimpleData::class,'update']);
