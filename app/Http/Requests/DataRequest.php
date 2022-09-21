@@ -24,7 +24,7 @@ class DataRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "value" => "required|string|min::20"
         ];
     }
 }

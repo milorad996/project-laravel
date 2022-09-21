@@ -61,11 +61,9 @@ class SimpleData extends Controller
 
         $value = $request->body('value');
 
-        if($value == "some value"){
-            return response()->json([
-                "value" => "some value - modified"
-            ]);
-        };
+        return response()->json([ "value" => $value . " - modified" ]);
+
+
     }
 
     /**
