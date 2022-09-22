@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DataRequest as RequestsDataRequest;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Requests\DataRequest;
-class SimpleData extends Controller
+
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +14,19 @@ class SimpleData extends Controller
      */
     public function index()
     {
-        return response()->json(
-            [
-            
-                    "name" => "Route that returns some data",
-                    "type"=> "GET",
-                    "description"=> "This route returns some data"
-               
-            ]
-            );
-            
-        
+        $posts = Post::all();
+
+        return response()->json($posts);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -41,10 +43,21 @@ class SimpleData extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
     {
         //
     }
@@ -53,27 +66,21 @@ class SimpleData extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestsDataRequest $request)
+    public function update(Request $request, Post $post)
     {
-        $request->validated();
-
-        $value = $request->body('value');
-
-        return response()->json([ "value" => $value . " - modified" ]);
-
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         //
     }
