@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\SimpleData;
@@ -33,3 +35,10 @@ Route::get('/home/{id}',[HomeController::class,'show']);
 Route::post('/home',[HomeController::class,'store']);
 Route::put('/home/{id}',[HomeController::class,'update']);
 Route::delete('/home/{id}',[HomeController::class, 'destroy']);
+
+
+Route::post('/auth/login',[AuthController::class, 'login']);
+Route::post('/auth/logout',[AuthController::class, 'logout']);
+
+Route::get('/data-open',[DataController::class, 'open'])->middleware('guest');
+ROute::get('/data-closed',[DataController::class, 'closed'])->middleware('auth');
