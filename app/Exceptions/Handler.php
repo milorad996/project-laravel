@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use SimpleError;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -22,7 +23,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        //
+        Illuminate\Contracts\Container\BindingResolutionException::class
     ];
 
     /**
@@ -45,6 +46,9 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+        $this->renderable(function (SimpleError $e, $request) {
+            return response()->view('errors.invalid-order', [], 500);
         });
     }
 }
